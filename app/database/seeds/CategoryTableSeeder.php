@@ -1,5 +1,6 @@
 <?php
 
+use HireMe\Entities\Category;
 
 class CategoryTableSeeder extends Seeder {
 
