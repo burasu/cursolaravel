@@ -19,10 +19,10 @@
         <tr>
 
             <td>{{ $candidate->user->full_name }}</td>
-            <td>{{ $candidate->job_type }}</td>
+            <td>{{ $candidate->job_type_title }}</td>
             <td>{{ $candidate->description }}</td>
             <td width="50">
-                <a class="btn btn-info" href="">
+                <a class="btn btn-info" href="{{ route('candidate', [$candidate->slug, $candidate->id]) }}">
                     Ver
                 </a>
             </td>
