@@ -3,7 +3,9 @@
 namespace HireMe\Entities;
 
 class Candidate extends \Eloquent {
+
 	protected $fillable = [];
+    protected $perPage  = 3;
 
     public function user()
     {

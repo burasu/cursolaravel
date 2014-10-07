@@ -14,7 +14,7 @@
             <th>Ver</th>
         </tr>
 
-        @foreach($category->candidates as $candidate)
+        @foreach($category->paginate_candidates as $candidate)
 
         <tr>
 
@@ -33,6 +33,7 @@
 
     </table>
 
+    {{ $category->paginate_candidates->links() }}
 
 </div>
 
