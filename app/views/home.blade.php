@@ -15,10 +15,13 @@
         <p><a class="btn btn-primary btn-lg" role="button">Postúlate &raquo;</a></p>
     </div>
 </div>
+
 <div class="container">
     <h1>Últimos candidatos</h1>
+
     @foreach ($latest_candidates as $category)
     <h2>{{ $category->name }}</h2>
+
     <table class="table table-striped">
         <thead>
         <tr>
