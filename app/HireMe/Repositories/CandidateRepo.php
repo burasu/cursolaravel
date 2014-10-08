@@ -12,9 +12,15 @@ class CandidateRepo extends BaseRepo {
         return new Candidate;
     }
 
-    public function findLatest()
+    public function findLatest($take = 10)
     {
-        return Category::with(['candidates', 'candidates.user'])->get();
+        return Category::with([
+            'candidates' => function($q) use ($take) {
+                    $q->take($take);
+                    $q->orderBy('created_at', 'DESC');
+                },
+            'candidates.user'
+        ])->get();
     }
 
-} 
+}
