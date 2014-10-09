@@ -25,4 +25,18 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+    protected $fillable = array('full_name', 'email', 'password');
+
+
+    /**
+     * Con esto hacemos que Laravel por defecto codifique las contraseñas,
+     * ya sea desde el Seeder o bien desde el mantenimiento.
+     *
+     * @param string $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = \Hash::make($value);
+    }
+
 }
