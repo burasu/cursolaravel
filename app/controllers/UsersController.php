@@ -5,6 +5,7 @@ use HireMe\Managers\RegisterManager;
 use HireMe\Repositories\CandidateRepo;
 use HireMe\Repositories\CategoryRepo;
 use HireMe\Managers\AccountManager;
+use HireMe\Managers\ProfileManager;
 
 class UsersController extends BaseController {
 
@@ -51,7 +52,7 @@ class UsersController extends BaseController {
     public function profile()
     {
         $user = Auth::user();
-        $candidate = $user->candidate;
+        $candidate = $user->getCandidate();
 
         $categories = $this->categoryRepo->getList();
         $job_types  = \Lang::get('utils.job_types');
@@ -62,10 +63,12 @@ class UsersController extends BaseController {
     public function updateProfile()
     {
         $user = Auth::user();
-        $candidate = $user->candidate;
+        $candidate = $user->getCandidate();
+
         $manager = new ProfileManager($candidate, Input::all());
 
         $manager->save();
+
         return Redirect::route('home');
     }
 

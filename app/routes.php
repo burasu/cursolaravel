@@ -21,15 +21,26 @@ Route::get('candidates/{slug}/{id}', ['as' => 'category', 'uses' => 'CandidatesC
 Route::get('{slug}/{id}', ['as' => 'candidate', 'uses' => 'CandidatesController@show']);
 
 
-Route::get('sign-up', ['as' => 'sign_up', 'uses' => 'UsersController@signUp']);
-Route::post('sign-up', ['as' => 'register', 'uses' => 'UsersController@register']);
+Route::group(['before' => 'guest'], function () {
+    Route::get('sign-up', ['as' => 'sign_up', 'uses' => 'UsersController@signUp']);
+    Route::post('sign-up', ['as' => 'register', 'uses' => 'UsersController@register']);
+});
+
 
 Route::post('login', ['as' => 'login', 'uses' => 'AuthController@login']);
-Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
 
 // Formularios
-Route::get('account', ['as' => 'account', 'uses' => 'UsersController@account']);
-Route::put('account', ['as' => 'update_account', 'uses' => 'UsersController@updateAccount']);
-Route::get('profile', ['as' => 'profile', 'uses' => 'UsersController@profile']);
-Route::put('profile', ['as' => 'update_profile', 'uses' => 'UsersController@updateProfile']);
+Route::group(['before' => 'auth'], function () {
+
+    require (__DIR__ . '/routes/auth.php');
+
+    // Admin routes
+    Route::group(['before' => 'is_admin'], function(){
+
+        require (__DIR__ . '/routes/admin.php');
+
+    });
+});
+
+

@@ -12,11 +12,13 @@
                 https://mejorando.la/cursos/php-laravel
             </a>
         </p>
+        @if (Auth::guest())
         <p>
             <a href="{{ route('sign_up') }}" class="btn btn-primary btn-lg" role="button">
                 Postúlate &raquo;
             </a>
         </p>
+        @endif
     </div>
 </div>
 

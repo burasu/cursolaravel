@@ -25,6 +25,24 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
     protected $fillable = array('full_name', 'email', 'password');
 
+    public function candidate()
+    {
+        return $this->hasOne('HireMe\Entities\Candidate', 'id', 'id');
+    }
+
+    public function getCandidate()
+    {
+        $candidate = $this->candidate;
+
+        if (is_null($candidate))
+        {
+            $candidate = new Candidate();
+            $candidate->id = $this->id;
+        }
+
+        return $candidate;
+    }
+
 
     /**
      * Con esto hacemos que Laravel por defecto codifique las contraseñas,

@@ -2,7 +2,8 @@
 
 class Candidate extends \Eloquent {
 
-	protected $fillable = [];
+	protected $fillable = ['website_url', 'description', 'job_type', 'category_id', 'available'];
+//    protected $guarded  = [];     // Campos que no se rellenarán en asignación masiva.
     protected $perPage  = 3;
 
     public function user()

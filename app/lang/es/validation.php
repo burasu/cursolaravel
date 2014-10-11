@@ -121,5 +121,6 @@ return array(
     'email'                 => 'correo electrónico',
     'password'              => 'clave',
     'password_confirmation' => 'repite tu clave',
+    'category_id'           => 'categoría'
 ),
 );
