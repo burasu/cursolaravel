@@ -46,7 +46,7 @@
                         <span class="icon icon-wh i-profile"></span> {{ Auth::user()->full_name }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@{{ route('profile') }}">Editar perfil</a></li>
+                        <li><a href="{{ route('profile') }}">Editar perfil</a></li>
                         <li><a href="{{ route('account') }}">Editar usuario</a></li>
                         <li><a href="{{ route('logout') }}">Salir</a></li>
                     </ul>
