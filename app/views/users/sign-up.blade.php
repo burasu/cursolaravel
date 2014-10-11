@@ -12,28 +12,13 @@
 
             {{ Form::open(['route' => 'register', 'method' => 'POST', 'role' => 'form', 'novalidate']) }}
 
-            {{ App::make('fieldBfs')->input('text', 'full_name') }}
+            {{ Field::text('full_name') }}
 
+            {{ Field::email('email') }}
 
+            {{ Field::password('password') }}
 
-            <div class="form-group">
-                {{ Form::label('email', 'Correo') }}
-                {{ Form::email('email', null, ['class' => 'form-control']) }}
-                {{ $errors->first('email', '<p class="error_message">:message</p>') }}
-            </div>
-
-            <div class="form-group">
-                {{ Form::label('password', 'Contraseña') }}
-                {{ Form::password('password', ['class' => 'form-control']) }}
-                {{ $errors->first('password', '<p class="error_message">:message</p>') }}
-            </div>
-
-            <div class="form-group">
-                {{ Form::label('password_confirmation', 'Repertir contraseña') }}
-                {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
-                {{ $errors->first('password_confirmation', '<p class="error_message">:message</p>') }}
-            </div>
-
+            {{ Field::password('password_confirmation') }}
 
             <p>
                 <input type="submit" value="Register" class="btn btn-success"/>

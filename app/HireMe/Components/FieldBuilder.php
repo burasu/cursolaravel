@@ -101,4 +101,26 @@ class FieldBuilder {
         return \View::make($template, compact('name', 'label', 'control', 'error'));
     }
 
+    public function password($name, $attributes = array())
+    {
+        return $this->input('password', $name, null, $attributes);
+    }
+
+    /**
+     * Con este método conseguimos emular el efecto de tener un método
+     * por cada tipo de componente, pero simplemente llama al
+     * método input pasandole los parametros recibidos.
+     *
+     * Con ello conseguimos simplificar el resultado en la vista.
+     *
+     * @param $method
+     * @param $params
+     * @return mixed
+     */
+    public function __call($method, $params)
+    {
+        array_unshift($params, $method);
+        return call_user_func_array([$this, 'input'], $params);
+    }
+
 } 
