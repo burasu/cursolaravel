@@ -1,8 +1,17 @@
 <?php
 
 use HireMe\Entities\User;
+use HireMe\Managers\RegisterManager;
+use HireMe\Repositories\CandidateRepo;
 
 class UsersController extends BaseController {
+
+    protected $candidateRepo;
+
+    public function __construct(CandidateRepo $candidateRepo)
+    {
+        $this->candidateRepo = $candidateRepo;
+    }
 
     public function signUp()
     {
@@ -11,28 +20,15 @@ class UsersController extends BaseController {
 
     public function register()
     {
-        $data = Input::only(['full_name', 'email', 'password', 'password_confirmation']);
-        $rules = [
-            'full_name' => 'required',
-            'email'     => 'required|email|unique:users,email',
-            'password'  => 'required|confirmed',
-            'password_confirmation' => 'required'
-        ];
+        $user = $this->candidateRepo->newCandidate();
+        $manager = new RegisterManager($user, Input::all());
 
-        $validation = \Validator::make($data, $rules);
-
-        if ($validation->passes())
+        if ($manager->save())
         {
-            // Creamos un nuevo objeto tipo Usuario con los datos recibidos.
-            $user = new User($data);
-            // Añadimos el / los valores por defecto que queremos.
-            $user->type = 'candidate';
-            // Almacenamos el registro en la base de datos.
-            $user->save();
             return Redirect::route('home');
         }
 
-        return Redirect::back()->withInput()->withErrors($validation->messages());
+        return Redirect::back()->withInput()->withErrors($manager->getErrors());
     }
 
 } 

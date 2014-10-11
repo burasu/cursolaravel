@@ -12,6 +12,10 @@
 
             {{ Form::open(['route' => 'register', 'method' => 'POST', 'role' => 'form', 'novalidate']) }}
 
+
+
+
+
             <div class="form-group">
                 {{ Form::label('full_name', 'Nombre completo') }}
                 {{ Form::text('full_name', null, ['class' => 'form-control']) }}
