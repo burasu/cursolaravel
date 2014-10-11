@@ -3,6 +3,7 @@
 use HireMe\Entities\User;
 use HireMe\Managers\RegisterManager;
 use HireMe\Repositories\CandidateRepo;
+use HireMe\Managers\AccountManager;
 
 class UsersController extends BaseController {
 
@@ -23,12 +24,24 @@ class UsersController extends BaseController {
         $user = $this->candidateRepo->newCandidate();
         $manager = new RegisterManager($user, Input::all());
 
-        if ($manager->save())
-        {
-            return Redirect::route('home');
-        }
+        $manager->save();
+        return Redirect::route('home');
+    }
 
-        return Redirect::back()->withInput()->withErrors($manager->getErrors());
+    public function account()
+    {
+        $user = Auth::user();
+
+        return View::make('users/account', compact('user'));
+    }
+
+    public function updateAccount()
+    {
+        $user = Auth::user();
+        $manager = new AccountManager($user, Input::all());
+
+        $manager->save();
+        return Redirect::route('home');
     }
 
 } 
