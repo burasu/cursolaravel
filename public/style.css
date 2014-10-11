@@ -7,3 +7,8 @@ body {
 .error_message {
     color: red;
 }
+
+.remember-me {
+    color: #fff;
+    font-weight: normal;
+}
