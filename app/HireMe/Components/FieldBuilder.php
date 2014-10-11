@@ -6,12 +6,16 @@ use Illuminate\Html\FormBuilder as Form;
 //use Illuminate\View\Environment as View; // Previo a la versión 4.2 de Laravel
 use Illuminate\View\Factory as View;        // Posterio a la verisón 4.2 de Laravel
 use Illuminate\Session\Store as Session;
+use Illuminate\Translation\Translator as Lang;
+use Illuminate\Filesystem\Filesystem as File;
 
 class FieldBuilder {
 
     protected $form;
     protected $view;
     protected $session;
+    protected $lang;
+    protected $file;
 
     protected $defaultClass = [
         'default'  => 'form-control',
@@ -19,11 +23,13 @@ class FieldBuilder {
     ];
 
     // Iniciamos la inyección de dependencias.
-    public function __construct(Form $form, View $view, Session $session)
+    public function __construct(Form $form, View $view, Session $session, Lang $lang, File $file)
     {
         $this->form    = $form;
         $this->view    = $view;
         $this->session = $session;
+        $this->lang    = $lang;
+        $this->file    = $file;
     }
 
     public function getDefaultClass($type)
@@ -52,9 +58,9 @@ class FieldBuilder {
 
     public function buildLabel($name)
     {
-        if (\Lang::has('validation.attributes.' . $name))
+        if ($this->lang->has('validation.attributes.' . $name))
         {
-            $label = \Lang::get('validation.attributes.' . $name);
+            $label = $this->lang->get('validation.attributes.' . $name);
         }
         else
         {
@@ -98,7 +104,7 @@ class FieldBuilder {
 
     public function buildTemplate($type)
     {
-        if (\File::exists('app/views/fields/' . $type . '.blade.php'))
+        if ($this->file->exists('app/views/fields/' . $type . '.blade.php'))
         {
             return 'fields/' . $type;
         }
