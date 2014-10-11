@@ -36,9 +36,9 @@ class FieldBuilder {
 
     public function buildLabel($name)
     {
-        if (\Lang::has('validation.attributes.' $name))
+        if (\Lang::has('validation.attributes.' . $name))
         {
-            $label = \Lang::get('validation.attributes.' $name)
+            $label = \Lang::get('validation.attributes.' . $name);
         }
         else
         {
@@ -59,7 +59,7 @@ class FieldBuilder {
             case 'checkbox':
                 return \Form::checkbox($name);
             default:
-                return \Form::text($type, $name, $value, $attributes);
+                return \Form::input($type, $name, $value, $attributes);
         }
     }
 
