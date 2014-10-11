@@ -39,9 +39,11 @@
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" role="form">
                 <div class="form-group">
+                    {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) }}
                     <input type="text" placeholder="Email" class="form-control">
                 </div>
                 <div class="form-group">
+                    {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) }}
                     <input type="password" placeholder="Password" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
