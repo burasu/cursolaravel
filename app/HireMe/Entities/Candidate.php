@@ -1,6 +1,4 @@
-<?php
-
-namespace HireMe\Entities;
+<?php namespace HireMe\Entities;
 
 class Candidate extends \Eloquent {
 

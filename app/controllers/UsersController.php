@@ -15,8 +15,7 @@ class UsersController extends BaseController {
 
     public function signUp()
     {
-        $fieldBuilder = new \HireMe\Components\FieldBuilder();
-        return View::make('users/sign-up', compact('fieldBuilder'));
+        return View::make('users/sign-up');
     }
 
     public function register()

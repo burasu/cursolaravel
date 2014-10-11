@@ -12,7 +12,9 @@
 
             {{ Form::open(['route' => 'register', 'method' => 'POST', 'role' => 'form', 'novalidate']) }}
 
-            {{ $fieldBuilder->input('text', 'full_name') }}
+            {{ App::make('fieldBfs')->input('text', 'full_name') }}
+
+
 
             <div class="form-group">
                 {{ Form::label('email', 'Correo') }}

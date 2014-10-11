@@ -1,6 +1,4 @@
-<?php
-
-namespace HireMe\Repositories;
+<?php namespace HireMe\Repositories;
 
 
 abstract class BaseRepo {

@@ -1,6 +1,4 @@
-<?php
-
-namespace HireMe\Managers;
+<?php namespace HireMe\Managers;
 
 /**
  * Class RegisterManager

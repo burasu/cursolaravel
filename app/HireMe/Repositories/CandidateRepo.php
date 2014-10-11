@@ -1,6 +1,4 @@
-<?php
-
-namespace HireMe\Repositories;
+<?php namespace HireMe\Repositories;
 
 use HireMe\Entities\Candidate;
 use HireMe\Entities\Category;

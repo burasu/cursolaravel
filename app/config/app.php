@@ -121,7 +121,12 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+        // Vendor
         'Way\Generators\GeneratorsServiceProvider',
+
+        // Custom
+        'HireMe\Components\FieldServiceProvider',
 
 	),
 
