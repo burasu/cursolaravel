@@ -44,3 +44,20 @@ Route::group(['before' => 'auth'], function () {
 });
 
 
+// Rutas para ejemplo de integración con AngularJS
+Route::get('search', function() {
+
+    return View::make('search');
+
+});
+
+
+Route::get('search/results', function() {
+
+    $name  = Input::get('nombre');
+    $users = HireMe\Entities\User::where('full_name', 'LIKE', '%' . $name . '%')->take(20)->get();
+    return Response::json($users);
+
+});
+
+
