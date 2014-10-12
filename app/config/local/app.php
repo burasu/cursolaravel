@@ -15,4 +15,7 @@ return array(
 
 	'debug' => true,
 
+    // Definimos el idioma para el entorno local
+    'locale' => 'es'
+
 );
